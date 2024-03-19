@@ -61,11 +61,11 @@ async function analisarPartidas(){
                 const scoreHome = dados[i].match_hometeam_score;
                 const scoreAway = dados[i].match_awayteam_score;
                 const onTarget = dados[i].statistics.find(stat => stat.type === 'On Target');
-                const onTargetHome = onTarget.home;
-                const onTargetAway = onTarget.away;
+                const onTargetHome = Number(onTarget.home);
+                const onTargetAway = Number(onTarget.away);
                 const offTarget = dados[i].statistics.find(stat => stat.type === 'Off Target');
-                const offTargetHome = offTarget.home;
-                const offTargetAway = offTarget.away;
+                const offTargetHome = Number(offTarget.home);
+                const offTargetAway = Number(offTarget.away);
                 const chutesHome = onTargetHome + offTargetHome;
                 const chutesAway = onTargetAway + offTargetAway;
                 try{
@@ -88,10 +88,11 @@ async function analisarPartidas(){
     }
 }
 
-
 analisarPartidas()
 
 setInterval(iniciar, 60000);
+
+iniciar()
 
 async function iniciar() {
     try {
