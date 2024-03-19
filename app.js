@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
 const token = '6416421723:AAGcrBVbPY9E8-bIdK_4-AeM7t1KCtpn4AA'
-const chat_bot = '-1002102341430'
+const chat_bot = '-1002002661890'
 const chat_error = '-1002016006632'
 const bot = new TelegramBot(token, { polling: false });
 const app = express();
@@ -97,6 +97,7 @@ async function iniciar() {
     try {
         await analisarPartidas();
         console.log(qtdPartidas + " Jogos ao vivo,"+" Analisando " + partidasEmAnalise.size + " Partidas," + " Partidas Notificadas: ["+ [...partidasNotificadas].join(", ")+"]");
+        await enviarMensagemTelegram(chat_bot, "oi");
     } catch (error) {
         console.log(error);
         await enviarMensagemTelegram(chat_error,error);
